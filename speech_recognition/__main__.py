@@ -12,13 +12,12 @@ try:
         with m as source: audio = r.listen(source)
         print("Got it! Now to recognize it...")
         try:
-            # recognize speech using Google Speech Recognition
-            value = r.recognize_google(audio)
-
-            print("You said {}".format(value))
+            spoken_text = r.recognize_sphinx(audio)
+            print("Tadbot thinks you said: " + spoken_text)
         except sr.UnknownValueError:
-            print("Oops! Didn't catch that")
+            print("Tadbot could not understand audio")
         except sr.RequestError as e:
-            print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
+            print(f"Could not request results from Sphinx; {e}")
 except KeyboardInterrupt:
     pass
+ 
